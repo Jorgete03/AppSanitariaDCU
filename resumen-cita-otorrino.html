@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="./src/EstiloCitas.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen de la cita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="mobile-container">
+    <!-- Header -->
+    <div class="header">
+      <!-- Botón Volver -->
+      <a href="./citas-anteriores.html" class="back-arrow">&lt;</a>
+      Citas anteriores
+      <a href="./Index.html" class="home-icon">&#8962;</a>
+    </div>
+
+    <!-- Resumen de la cita -->
+    <div class="p-4">
+      <!-- Encabezado de la cita -->
+      <div class="flex items-center mb-4">
+        <div class="flex-grow">
+          <h2 class="text-2xl font-bold">Otorrinolaringología</h2>
+          <p class="text-gray-600">Dra. María Bellota</p>
+        </div>
+        <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+          <img src="./src/ear@2x.png" alt="Icono" class="w-10 h-10">
+        </div>
+      </div>
+
+      <!-- Fecha y hora -->
+      <p class="text-gray-700 mb-4">
+        <strong>9:35</strong> - 12 diciembre 2024
+      </p>
+
+      <!-- Diagnóstico -->
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold text-green-600 mb-2">Diagnóstico</h3>
+        <ul class="list-disc pl-6 text-gray-700">
+          <li>Infección en las vías respiratorias superiores</li>
+          <li>Inflamación leve en las amigdalas</li>
+        </ul>
+      </div>
+
+      <!-- Recomendaciones -->
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold text-green-600 mb-2">Recomendaciones</h3>
+        <ul class="list-disc pl-6 text-gray-700">
+          <li>Realizar gárgaras con agua tibia y sal 3 veces al día.</li>
+          <li>Evitar consumo de bebidas frías.</li>
+          <li>Contactar con el médico si persiste los sintomas por más de 1 semana.</li>
+        </ul>
+      </div>
+
+      <!-- Medicación solicitada -->
+      <div>
+        <h3 class="text-lg font-semibold text-green-600 mb-2">Medicación solicitada</h3>
+        <a href="detalle-receta-otorrino.html" class="text-blue-500 underline">Ver receta médica</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    localStorage.setItem('lastVisited2', 'resumen-cita-otorrino.html');
+  </script>
+</body>
+</html>

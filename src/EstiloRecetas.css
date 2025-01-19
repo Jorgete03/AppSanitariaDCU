@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #b1d2d2;
+}
+
+.mobile-container {
+    width: 375px; 
+    height: 600px; 
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header {
+    background-color: #1DBE4F;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: relative;
+}
+.home-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+.back-arrow {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.card .details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .details-header .doctor-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.card .details-header .specialty {
+    font-size: 14px;
+    color: #999; /* Gris claro */
+    font-style: italic;
+}
+
+.card .details .date {
+    font-size: 14px;
+    color: #666; /* Gris medio */
+    margin-top: 5px;
+}
+
+/* Lista de medicamentos */
+.card .details .medication-list ul {
+    list-style-type: disc; /* Cambia los guiones a bolitas */
+    padding-left: 20px; /* Añade un margen izquierdo para alinear correctamente */
+    margin: 0;
+}
+
+.card .details .medication-list ul li {
+    margin: 5px 0; /* Añade espacio entre los elementos */
+    font-size: 16px;
+}
+
+.arrow {
+    font-size: 1.5em;
+    color: #ccc;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta Detallada</title>
+    <link rel="stylesheet" href="./src/EstiloDetalleRecetas.css">
+</head>
+<body>
+    <div class="mobile-container">
+
+        <div class="header">
+            Receta - 24/12/2024
+            <div class="subheader">Dra. María Bellota</div>
+            <a href="#" class="back-arrow" id="backButton">&lt;</a>
+            <a href="./Index.html" class="home-icon">&#8962;</a>
+        </div>
+
+        <div class="card">
+            <h3>Amoxicilina 250g</h3>
+            <hr>
+            <p><strong>Indicaciones:</strong></p>
+            <p>Cada 8 horas.</p>
+        </div>
+
+        <div class="card">
+            <h3>Mometasona (gotas)</h3>
+            <hr>
+            <p><strong>Indicaciones:</strong></p>
+            <p>3 gotas en el oido infectado al día.</p>
+        </div>
+
+        <div class="footer">
+            <button class="button">
+                <img src="./src/phone.png" alt="Icono de teléfono">
+                Llamar al médico
+            </button>
+            <div class="cuadro">
+                Receta
+                <div class="qr-code">
+                    <img src="./img/qr-code.png" alt="Código QR" class="qr-code">
+                </div>
+            </div>
+        </div>    
+    </div>
+    <script>
+        // Al cargar la página, almacenamos la página actual
+        if (window.location.pathname.includes('resumen-cita-trauma.html')) {
+            localStorage.setItem('lastVisited2', 'resumen-cita-trauma.html');
+        } else if (window.location.pathname.includes('resumen-cita-rayos.html')) {
+            localStorage.setItem('lastVisited2', 'resumen-cita-rayos.html');
+        } else if (window.location.pathname.includes('resumen-cita-otorrino.html')) {
+            localStorage.setItem('lastVisited2', 'resumen-cita-otorrino.html');
+        } else if (window.location.pathname.includes('resumen-cita-medfar.html')) {
+            localStorage.setItem('lastVisited2', 'resumen-cita-medfar.html'); // Nueva página añadida
+        }
+     else if (window.location.pathname.includes('recetas.html')) {
+            localStorage.setItem('lastVisited2', 'recetas.html'); // Nueva página añadida
+        }
+
+        // Función para gestionar el botón de retroceso
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Recuperar la última página visitada desde localStorage
+            const lastVisited2 = localStorage.getItem('lastVisited2');
+
+            if (lastVisited2 === 'resumen-cita-trauma.html') {
+                window.location.href = './resumen-cita-trauma.html'; // Redirigir a DetalleCitaTrauma.html
+            } else if (lastVisited2 === 'resumen-cita-rayos.html') {
+                window.location.href = './resumen-cita-rayos.html'; // Redirigir a DetalleCitaGine.html
+            } else if (lastVisited2 === 'resumen-cita-otorrino.html') {
+                window.location.href = 'resumen-cita-otorrino.html'; // Redirigir a Rehabilitaciones.html
+            }else if (lastVisited2 === 'resumen-cita-medfar.html') {
+                window.location.href = 'resumen-cita-medfar.html'; // Redirigir a Rehabilitaciones.html
+            }  else if (lastVisited2 === 'recetas.html') {
+                    window.location.href = 'recetas.html'; // Redirigir a Rehabilitaciones.html
+          
+        }
+    });
+
+    </script>
+</body>
+</html>

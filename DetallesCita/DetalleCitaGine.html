@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Cita</title>
+    <link rel="stylesheet" href="../estilos/EstiloDetalleCita.css">
+</head>
+
+<body>
+    <div class="mobile-container">
+        <!-- Encabezado con flecha de retorno -->
+        <div class="encabezado">
+            <a href="../Citas.html" class="back-arrow">&lt;</a>
+            Cita: Ginecología
+            <a href="../Recordatorio.html" class="reminder-icon">&#128276;</a>
+            <a href="../Index.html" class="home-icon">&#8962;</a>
+        </div>
+
+        <!-- Detalles de la cita -->
+        <div class="appointment-details">
+            <p><strong>Médico:</strong> Dr. Adrián Forcada</p>
+            <p><strong>Fecha:</strong> 27/01/25  10:00 am</p>
+            <p><strong>Centro:</strong> CM - San José</p>
+            <p>
+                <strong>Planta:</strong> P4 - C11
+                <span class="location-icon" id="map-button">&#x1f4cd;</span>
+            </p>
+        </div>
+
+        <!-- Acciones -->
+        <div class="actions">
+            
+            <button id="cancel-button" class="cancel-appointment-button">Anular cita</button>
+        </div>
+
+        <!-- Modal para confirmar la anulación de la cita -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <p>¿Seguro que quieres cancelar la cita?</p>
+                <div class="modal-actions">
+                    <button id="confirm-cancel" class="confirm-button">Anular cita</button>
+                    <button id="deny-cancel" class="deny-button">No anular cita</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Superposición para el mapa -->
+        <div id="map-overlay" class="map-overlay">
+            <div class="map-content">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6190.653869180497!2d-0.40501847526625296!3d39.50462102823054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f5bcdce8a4b%3A0x17dc0216c9624f50!2sHospital%20Arnau%20de%20Vilanova!5e0!3m2!1ses!2ses!4v1697573850726!5m2!1ses!2ses" 
+                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <button id="close-map" class="close-map">Cerrar</button>
+            </div>
+        </div>
+
+        <script>
+            const cancelButton = document.getElementById('cancel-button');
+            const modal = document.getElementById('modal');
+            const confirmCancel = document.getElementById('confirm-cancel');
+            const denyCancel = document.getElementById('deny-cancel');
+            const mapButton = document.getElementById('map-button');
+            const mapOverlay = document.getElementById('map-overlay');
+            const closeMap = document.getElementById('close-map');
+
+            // Muestra el modal al pulsar "Anular cita"
+            cancelButton.addEventListener('click', () => {
+                modal.style.visibility = 'visible';
+                modal.style.display = 'flex';
+            });
+
+            // Acción de cancelar la cita
+            confirmCancel.addEventListener('click', () => {
+                document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-size:1.5em;">Cita anulada con éxito</div>';
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 2000);
+            });
+
+            // Cierra el modal sin cancelar la cita
+            denyCancel.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Muestra el mapa al pulsar el icono de ubicación
+            mapButton.addEventListener('click', () => {
+                mapOverlay.style.display = 'flex';
+            });
+
+            // Cierra el mapa
+            closeMap.addEventListener('click', () => {
+                mapOverlay.style.display = 'none';
+            });
+            localStorage.setItem('lastVisited', 'DetalleCitaGine.html');
+        </script>
+    </div>
+</body>
+
+</html>

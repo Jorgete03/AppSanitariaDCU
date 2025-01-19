@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="./src/EstiloRecetas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Recetas Médicas</title>
+</head>
+<body>
+    
+    <!-- Vista 1 -->
+    <div class="mobile-container">
+            <div class="header">
+                <a href="./Index.html" class="back-arrow">&lt;</a>
+                Recetas médicas
+                <a href="./Index.html" class="home-icon">&#8962;</a>
+            </div>
+        <a href="./detalle-receta-trauma.html">
+            <div class="card">
+                <div class="details">
+                    <div class="details-header">
+                        <span class="doctor-name">Dr. Romero Juan</span>
+                        <span class="specialty">TRAUMATOLOGÍA</span>
+                    </div>
+                    <span class="date">24/12/2024</span>
+                    <div class="medication-list">
+                        <ul>
+                            <li>Diclofenaco</li>
+                            <li>Tramadol</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="arrow">&gt;</div>
+            </div>
+        </a>
+
+        <a href="./detalle-receta-otorrino.html">
+            <div class="card">
+                <div class="details">
+                    <div class="details-header">
+                        <span class="doctor-name">Dr. María Bellota</span>
+                        <span class="specialty">OTORRINOLARINGOLOGÍA</span>
+                    </div>
+                    <span class="date">12/12/2024</span>
+                    <div class="medication-list">
+                        <ul>
+                            <li>Amoxicilina</li>
+                            <li>Mometasona</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="arrow">&gt;</div>
+            </div>
+        </a>
+    </div>
+    <script>
+        localStorage.setItem('lastVisited2', 'recetas.html');
+      </script>    
+</body>
+</html>
