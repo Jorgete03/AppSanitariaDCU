@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar Recordatorio</title>
+    <style>
+
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #b1d2d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .mobilecontainer {
+            width: 375px;
+            height: 667px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .reminder-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .option span {
+            font-size: 1rem;
+        }
+
+        .personalized-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #eaf8ea;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            background-color: #28a745;
+            padding: 10px;
+        }
+
+        .footer-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .footer-button:first-child {
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-button svg {
+            margin-right: 5px;
+        }
+
+        /* Ventana emergente */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .home-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+    </style>
+</head>
+<body>
+    <div class="mobilecontainer">
+        <div class="header">
+            <a href="#" class="back-arrow" id="backButton">&lt;</a>
+            Configurar Recordatorio
+            <a href="./Index.html" class="home-icon">&#8962;</a>
+        </div>
+        <div class="content">
+            <p><h3><b>Avisar...</b></h3></p>
+            <div class="reminder-options">
+                <div class="option">
+                    <span>2 días antes</span>
+                    <input type="checkbox">
+                </div>
+                <div class="option">
+                    <span>1 día antes</span>
+                    <input type="checkbox" checked>
+                </div>
+                <div class="option">
+                    <span>2 horas antes</span>
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <!-- Sección dinámica para datos personalizados -->
+            <div id="personalizedSection" class="personalized-info" style="display: none;">
+                <strong><span id="personalizedName">-</span></strong>
+                <p>Fecha: <span id="personalizedDate">-</span></p>
+                <p>Hora: <span id="personalizedTime">-</span></p>
+                <p>Nota: <span id="personalizedNote">-</span></p>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="Personalizar.html" class="footer-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M5 4v16l15-8L5 4z"></path>
+                </svg>
+                Personalizar
+            </a>
+            <a href="#" class="footer-button" id="confirmButton">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm6 4h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                </svg>
+                Confirmar
+            </a>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        Recordatorio configurado con éxito
+    </div>
+
+    <script>
+        
+        // Recuperar los datos personalizados desde localStorage
+        let reminderName = localStorage.getItem('reminderName') || "Recordatorio De Cita";
+        
+        let reminderNote = localStorage.getItem('reminderNote') || "Sin nota";
+
+        
+        const reminderDate = localStorage.getItem('reminderDate');
+        const reminderTime = localStorage.getItem('reminderTime');
+
+        // Mostrar la sección personalizada si los datos existen
+        if (reminderDate && reminderTime) {
+            document.getElementById('personalizedSection').style.display = 'block';
+            document.getElementById('personalizedName').textContent = reminderName;
+            document.getElementById('personalizedNote').textContent = reminderNote;
+            document.getElementById('personalizedDate').textContent = reminderDate;
+            document.getElementById('personalizedTime').textContent = reminderTime;
+        }
+
+        // Función para mostrar el popup y redirigir
+        document.getElementById('confirmButton').addEventListener('click', function () {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block'; // Mostrar popup
+
+            setTimeout(() => {
+                popup.style.display = 'none'; // Ocultar popup después de 2 segundos
+                window.location.href = './DetallesCita/DetalleCitaTrauma.html'; // Redirigir a otra página
+            }, 2000);
+        });
+
+        // Al cargar la página, almacenamos la página actual
+        if (window.location.pathname.includes('Index.html')) {
+            localStorage.setItem('lastVisited', 'Index.html');
+        } else if (window.location.pathname.includes('DetalleCitaTrauma.html')) {
+            localStorage.setItem('lastVisited', 'DetalleCitaTrauma.html');
+        } else if (window.location.pathname.includes('DetalleCitaGine.html')) {
+            localStorage.setItem('lastVisited', 'DetalleCitaGine.html');
+        } else if (window.location.pathname.includes('Rehabilitaciones.html')) {
+            localStorage.setItem('lastVisited', 'Rehabilitaciones.html'); // Nueva página añadida
+        }
+
+        // Función para gestionar el botón de retroceso
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Recuperar la última página visitada desde localStorage
+            const lastVisited = localStorage.getItem('lastVisited');
+
+            if (lastVisited === 'DetalleCitaTrauma.html') {
+                window.location.href = './DetallesCita/DetalleCitaTrauma.html'; // Redirigir a DetalleCitaTrauma.html
+            } else if (lastVisited === 'DetalleCitaGine.html') {
+                window.location.href = './DetallesCita/DetalleCitaGine.html'; // Redirigir a DetalleCitaGine.html
+            } else if (lastVisited === 'Rehabilitaciones.html') {
+                window.location.href = 'DetalleRehabilitaciones.html'; // Redirigir a Rehabilitaciones.html
+            } else {
+                window.location.href = 'Index.html'; // Redirigir a Index.html por defecto
+            }
+        });
+
+        // Mostrar u ocultar elementos de recordatorios según la última página visitada
+        const lastVisited = localStorage.getItem('lastVisited');
+        const reminderOptions = document.querySelector('.reminder-options');
+
+        if (lastVisited === 'Index.html') {
+            reminderOptions.style.display = 'none'; // Ocultar los recordatorios
+        } else if (lastVisited === 'DetalleCitaTrauma.html' || lastVisited === 'DetalleCitaGine.html' || lastVisited === 'Rehabilitaciones.html') {
+            reminderOptions.style.display = 'flex'; // Mostrar los recordatorios
+        }
+    </script>
+</body>
+</html>
